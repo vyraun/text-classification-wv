@@ -12,7 +12,7 @@ Text Classification with Word Vectors
 * nltk.download('stopwords')
 
 # Get Reduced Vectors from Pre-trained vectors
-* reduction_algo.py embedding_file reduced_dimensions (e.g. python reduction_algo glove.300d.txt 150)
+* python reduction_algo.py [embedding_file] [reduced_dimensions] (e.g. python reduction_algo glove.300d.txt 150)
 * e.g. python reduction_algo glove.300d.txt 150 --> the reduced embeddings will be saved in reduced_embeddings_150.txt
 
 # 20Newsgroup
