@@ -1,16 +1,25 @@
 # WordVectors
 Text Classification with Word Vectors
 
-wget http://nlp.stanford.edu/data/glove.6B.zip
-unzip glove.6B.zip
 
-pip install pandas sklearn gensim tensorflow keras bs4
-nltk.download('punkt')
-nltk.download('stopwords')
+# Download Pre-trained Vectors
+* wget http://nlp.stanford.edu/data/glove.6B.zip
+* unzip glove.6B.zip
 
-* 20ewsGroup: svc creates the document vectors + gives results
-* Reuters: svc_reuters creates the document vectors, metrics gives the results
+# Install
+* pip install pandas sklearn gensim tensorflow keras bs4
+* nltk.download('punkt')
+* nltk.download('stopwords')
+
+# Get Reduced Vectors from Pre-trained vectors
+* reduction_algo.py embedding_file reduced_dimensions (e.g. python reduction_algo glove.300d.txt 150)
+* e.g. python reduction_algo glove.300d.txt 150 --> the reduced embeddings will be saved in reduced_embeddings_150.txt
+
+# 20Newsgroup
+* svc.py creates the document vectors + gives results
+* e.g. python svc.py glove.300d.txt 300
 
 
-* reduction_algo.py embed_file -> second arg must be the wanted dimensions
-* and the file name of the saved embedding must mention the new dimensions
+# Reuters 
+* svc_reuters.py creates the document vectors, metrics.py gives the results
+* e.g. python svc_reuters.py glove.300d.txt 300 then, python metrics.py 
