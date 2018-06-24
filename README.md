@@ -49,9 +49,9 @@
 | W2V-Newsgroup-Reduced-150D     |  60 (0.6023632501327668)      |   x    |
 | W2V-Newsgroup-Reduced-100D     |        |   x    |
 | W2V-Newsgroup-Reduced-50D     |        |   x   |
-| W2V-Reuters-300D     |   x    |  41 (0.4121083377588954)      |
+| W2V-Reuters-300D     |   x    |      |
 | W2V-Reuters-200D     |   x     |       |
 | W2V-Reuters-100D     |   x     |       |
-| W2V-Reuters-Reduced-150D     |   x      |  32 (0.3252788104089219)     |
+| W2V-Reuters-Reduced-150D     |   x      |       |
 | W2V-Reuters-Reduced-100D     |   x     |       |
 | W2V-Reuters-Reduced-50D     |    x    |       |
