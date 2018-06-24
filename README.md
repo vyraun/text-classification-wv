@@ -12,20 +12,22 @@
 * nltk.download('stopwords')
 
 # Get Reduced Vectors from Pre-trained vectors
-* python reduction_algo.py [embedding_file] [reduced_dimensions] (e.g. python reduction_algo glove.300d.txt 150)
-* e.g. python reduction_algo glove.300d.txt 150 --> the reduced embeddings will be saved in reduced_embeddings_150.txt
+* python reduction_algo.py [embedding_file] [embedding_dimensions] [reduced_dimensions] (e.g. python reduction_algo glove.300d.txt 150)
+* e.g. python reduction_algo glove.300d.txt 300 150 --> the reduced embeddings will be saved in reduced_embeddings_150.txt
+* e.g. python reduction_algo embeddings_on_newsgroup_300.txt 300 150 --> embeddings_on_newsgroup_300_reduced_embeddings_150.txt
+
 
 # 20Newsgroup on Pretrained-Glove
 * svc.py creates the document vectors + gives results
 * e.g. python svc.py glove.300d.txt 300
 
 # Reuters on Pretrained Glove
-* svc_reuters.py creates the document vectors, metrics.py gives the results
+* svc_reuters.py creates the document vectors, metrics.py gives the results 
 * e.g. python svc_reuters.py glove.300d.txt 300 then, python metrics.py 300
 
 # Train Vectors Using Word2Vec Model
-* Run the Word2VecModel_on_Newsgroup.py and Word2VecModel_on_Reuters.py files
-* Embedding files will be created, use them just as pre-trained vectors for evaluation
+* Run the Word2VecModel_on_Newsgroup.py and Word2VecModel_on_Reuters.py files, with embedding dimension as an argument
+* Embedding files will be created (e.g. embeddings_on_newsgroup_300.txt), use them just as pre-trained vectors for evaluation
 
 # Evaluation Table
 
