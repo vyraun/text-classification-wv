@@ -1,6 +1,5 @@
-# WordVectors
-Text Classification with Word Vectors
-
+# Text Classification with Word Vectors
+* Python 2.7
 
 # Download Pre-trained Vectors
 * cd into Repository
