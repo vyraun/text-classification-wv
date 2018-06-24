@@ -43,15 +43,15 @@
 | Fasttext-Reduced-150D     |        |       |
 | Word2Vec-300D          |      |     |
 | Word2Vec-Reduced-150D     |        |       |
-| W2V-Newsgroup-300D     |   73 (0.7379182156133829)     |       |
-| W2V-Newsgroup-200D     |        |       |
-| W2V-Newsgroup-100D     |        |       |
-| W2V-Newsgroup-Reduced-150D     |  60 (0.6023632501327668)      |       |
-| W2V-Newsgroup-Reduced-100D     |        |       |
-| W2V-Newsgroup-Reduced-50D     |        |       |
-| W2V-Reuters-300D     |   41 (0.4121083377588954)     |       |
-| W2V-Reuters-200D     |        |       |
-| W2V-Reuters-100D     |        |       |
-| W2V-Reuters-Reduced-150D     | 32 (0.3252788104089219)      |       |
-| W2V-Reuters-Reduced-100D     |        |       |
-| W2V-Reuters-Reduced-50D     |        |       |
+| W2V-Newsgroup-300D     |   73 (0.7379182156133829)     |   x    |
+| W2V-Newsgroup-200D     |        |   x    |
+| W2V-Newsgroup-100D     |        |   x    |
+| W2V-Newsgroup-Reduced-150D     |  60 (0.6023632501327668)      |   x    |
+| W2V-Newsgroup-Reduced-100D     |        |   x    |
+| W2V-Newsgroup-Reduced-50D     |        |   x   |
+| W2V-Reuters-300D     |   x    |  41 (0.4121083377588954)      |
+| W2V-Reuters-200D     |   x     |       |
+| W2V-Reuters-100D     |   x     |       |
+| W2V-Reuters-Reduced-150D     |   x      |  32 (0.3252788104089219)     |
+| W2V-Reuters-Reduced-100D     |   x     |       |
+| W2V-Reuters-Reduced-50D     |    x    |       |
