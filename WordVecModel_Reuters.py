@@ -48,11 +48,37 @@ if __name__ == '__main__':
 	            size=num_features, min_count = min_word_count, \
 	            window = context, sample = downsampling, seed=1)
 
-	model_name = str(num_features) + "features_" + str(min_word_count) + "minwords_" + str(context) + "context_len2alldata"
+	model_name = "trained_reuters_{0}.txt".format(num_features)
 	model.init_sims(replace=True)
 	# Save Word2Vec model.
 	print "Saving Word2Vec model..."
-	model.save(model_name)
+	#word_vectors = model.wv
+	#word_vectors.save(model_name)
+	#model.save(model_name)
+	model.save("temp_model")
+	print("Saved the Model")
+	model = Word2Vec.load("temp_model")
+	
+	words = list(model.wv.vocab)
+	
+	filename_reduced = "embeddings_on_reuters_{}.txt".format(num_features)
+	embedding_file = open(filename_reduced, 'w')
+
+	for i, word in enumerate(words):
+        	embedding_file.write("%s\t" % word)
+        	for t in model.wv[word]:
+                	embedding_file.write("%f\t" % t)
+        
+        	embedding_file.write("\n")
+		
+	# Placing a 'unk' token with zero values
+	embedding_file.write("unk\t")
+	unk = np.zeros(300, dtype='float32')
+	for t in unk:
+    		embedding_file.write("%f\t" % t)
+	embedding_file.write("\n")
+	
+	
 	endmodeltime = time.time()
 
 	print "time : ", endmodeltime-start

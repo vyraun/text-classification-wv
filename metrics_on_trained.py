@@ -66,12 +66,12 @@ test["text"] = test_data.reset_index(drop=True)
 print("Loading Document Vectors")
 
 # Load feature vectors.
-gwbowv = np.load('Reuters_train_{0}.npy'.format(dims))
+gwbowv = np.load('Reuters_train_trained_{0}.npy'.format(dims))
 
 #print("Sample Doc Vectors")
 #print(gwbowv[4])
 
-gwbowv_test = np.load('Reuters_test_{0}.npy'.format(dims))
+gwbowv_test = np.load('Reuters_test_trained_{0}.npy'.format(dims))
 
 #clf = OneVsRestClassifier(LogisticRegression(C = 100.0))
 #clf = clf.fit(gwbowv, Y_train)

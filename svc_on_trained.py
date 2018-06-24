@@ -20,6 +20,7 @@ from sklearn.metrics import classification_report
 from sklearn.mixture import GaussianMixture
 from sklearn.model_selection import GridSearchCV
 from sklearn.preprocessing import label_binarize
+from gensim.models import KeyedVectors
 
 if __name__ == '__main__':
 
@@ -27,15 +28,7 @@ if __name__ == '__main__':
 	dims = int(sys.argv[2])
 
 	# Word Vectors
-	Glove = {}
-	f = open(filename)
-	print("Loading Glove vectors.")
-	for line in f:
-	    values = line.split()
-	    word = values[0]
-	    coefs = np.asarray(values[1:], dtype='float32')
-	    Glove[word] = coefs
-	f.close()
+	Glove = KeyedVectors.load(filename)
 
 	# Load train data.
 	train = pd.read_csv( 'train_v2.tsv', header=0, delimiter="\t")
@@ -79,14 +72,20 @@ if __name__ == '__main__':
 
 		document_vector = np.zeros(dims, dtype="float32")
 
-		for word in word_to_tf: 
+		for word in word_to_tf:
 			if word in Glove:
+				document_vector += (word_to_tf[word]*word_idf_dict[word]) * Glove[word]
+				#print("Word Available")
+			else:
+				pass
+				#print("X X X Word not Available")
+			#if word in Glove:
 			    #print("To be added vector: ")
 			    #print word_to_tf[word]*word_idf_dict[word] * Glove[word]
-			    document_vector += (word_to_tf[word]*word_idf_dict[word]) * Glove[word]  # 
+			#document_vector += (word_to_tf[word]*word_idf_dict[word]) * Glove[word]
 			    #print("Found TF-IDF" + str(word_to_tf[word]) +" "+ str(word_idf_dict[word]))
-			else:
-			    document_vector += (word_to_tf[word]*word_idf_dict[word]) * Glove['unk'] # word_idf_dict[word]
+			#else:
+			#    document_vector += (word_to_tf[word]*word_idf_dict[word]) * Glove['unk'] # word_idf_dict[word]
 			    #print("UNK TF-IDF" + str(word_to_tf[word]) +" "+ str(word_idf_dict[word]))
 
 		# These words will be passed to generate the document vector
@@ -115,9 +114,12 @@ if __name__ == '__main__':
 
 		for word in word_to_tf:
 			if word in Glove:
-			    document_vector += (word_to_tf[word]*word_idf_dict[word])*Glove[word]
+				document_vector += (word_to_tf[word]*word_idf_dict[word])*Glove[word]
+				#print("Word Available")
 			else:
-			    document_vector += (word_to_tf[word]*word_idf_dict[word])*Glove['unk']
+				pass
+				#print("X X X Word not Available")
+			#    document_vector += (word_to_tf[word]*word_idf_dict[word])*Glove['unk']
 
 		gwbowv_test[counter] = document_vector
 		counter+=1

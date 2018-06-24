@@ -3,24 +3,25 @@ import sys
 import cPickle as pickle
 from sklearn.decomposition import PCA
 import subprocess
+from gensim.models import Word2Vec
+from gensim.models import KeyedVectors
 
 filename = sys.argv[1]
-file_text = str(filename)[:-4] 
 dims = int(sys.argv[2])
 red_dims = int(sys.argv[3])
 
-Glove = {}
-f = open(filename)
+model = Word2Vec.load(filename)
+words = list(model.wv.vocab)
 
-print("Loading Glove vectors.")
-for line in f:
-    values = line.split()
-    word = values[0]
-    coefs = np.asarray(values[1:], dtype='float32')
+Glove = {}
+
+print("Loading Vectors.")
+for word in words:
+    coefs =  model.wv[word]
     Glove[word] = coefs
-f.close()
 
 print("Done.")
+
 X_train = []
 X_train_names = []
 for x in Glove:
@@ -61,7 +62,7 @@ Ufit = pca.components_
 X_new_final = X_new_final - np.mean(X_new_final)
 
 final_pca_embeddings = {}
-filename_reduced = "{}_reduced_embeddings_{}.txt".format(file_text, red_dims)
+filename_reduced = "reduced_embeddings_on_trained_{}.txt".format(red_dims)
 embedding_file = open(filename_reduced, 'w')
 
 for i, x in enumerate(X_train_names):
@@ -74,6 +75,13 @@ for i, x in enumerate(X_train_names):
                 embedding_file.write("%f\t" % t)
         
         embedding_file.write("\n")
+	
+# Placing a 'unk' token with zero values
+embedding_file.write("unk\t")
+unk = np.zeros(300, dtype='float32')
+for t in unk:
+    embedding_file.write("%f\t" % t)
+embedding_file.write("\n")
 
 print("The Reduced Embedding is available at {0}".format(filename_reduced))
 
