@@ -73,7 +73,7 @@ if __name__ == '__main__':
 		
 	# Placing a 'unk' token with zero values
 	embedding_file.write("unk\t")
-	unk = np.zeros(300, dtype='float32')
+	unk = np.zeros(num_features, dtype='float32')
 	for t in unk:
     		embedding_file.write("%f\t" % t)
 	embedding_file.write("\n")

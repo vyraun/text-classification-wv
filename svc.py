@@ -133,31 +133,31 @@ if __name__ == '__main__':
 
 	print "********************************************************"
 
-	clf =  LinearSVC(C=1)
-	clf.fit(gwbowv, train["class"])
-	Y_true, Y_pred  = test["class"], clf.predict(gwbowv_test)
-	print "Report"
-	print classification_report(Y_true, Y_pred, digits=6)
-	print "Accuracy: ",clf.score(gwbowv_test,test["class"])
+	#clf =  LinearSVC(C=1)
+	#clf.fit(gwbowv, train["class"])
+	#Y_true, Y_pred  = test["class"], clf.predict(gwbowv_test)
+	#print "Report"
+	#print classification_report(Y_true, Y_pred, digits=6)
+	#print "Accuracy: ",clf.score(gwbowv_test,test["class"])
         
-	#param_grid = [{'C': np.arange(0.1, 7, 0.2)}]
-	#scores = ['accuracy']
+	param_grid = [{'C': np.arange(0.1, 7, 0.2)}]
+	scores = ['f1_weighted']
 	#scores = ['accuracy', 'recall_micro', 'f1_micro' , 'precision_micro', 'recall_macro', 'f1_macro' , 'precision_macro', 'recall_weighted', 'f1_weighted' , 'precision_weighted'] #, 'accuracy', 'recall', 'f1']
-	#for score in scores:
-	#    strt = time.time()
-	#    print "# Tuning hyper-parameters for", score, "\n"
-	#    clf =  GridSearchCV(LinearSVC(C=1), param_grid, cv=5, n_jobs=4, scoring= '%s' % score) # LinearSVC(C=1) , n_jobs=-1
-	#    clf.fit(gwbowv, train["class"])
-	#    print "Best parameters set found on development set:\n"
-	#    print clf.best_params_
-	#    print "Best value for ", score, ":\n"
-	#    print clf.best_score_
-	#    Y_true, Y_pred  = test["class"], clf.predict(gwbowv_test)
-	#    print "Report"
-	#    print classification_report(Y_true, Y_pred, digits=6)
-	#    print "Accuracy: ",clf.score(gwbowv_test,test["class"])
-	#    print "Time taken:", time.time() - strt, "\n"
-	#endtime = time.time()
-	#print "Total time taken: ", endtime-start, "seconds." 
+	for score in scores:
+	    strt = time.time()
+	    print "# Tuning hyper-parameters for", score, "\n"
+	    clf = GridSearchCV(LinearSVC(C=1), param_grid, cv=5, scoring= '%s' % score)
+	    clf.fit(gwbowv, train["class"])
+	    print "Best parameters set found on development set:\n"
+	    print clf.best_params_
+	    print "Best value for ", score, ":\n"
+	    print clf.best_score_
+	    Y_true, Y_pred  = test["class"], clf.predict(gwbowv_test)
+	    print "Report"
+	    print classification_report(Y_true, Y_pred, digits=6)
+	    print "Accuracy: ",clf.score(gwbowv_test,test["class"])
+	    print "Time taken:", time.time() - strt, "\n"
+	endtime = time.time()
+	print "Total time taken in training: ", endtime-start, "seconds." 
 
-	#print "********************************************************"
+	print "********************************************************"

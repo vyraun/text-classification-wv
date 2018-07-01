@@ -1,0 +1,17 @@
+python svc_reuters.py embeddings_on_reuters_400.txt 400
+---------------------------------------------------
+Precision@ 1 :  0.635128248684
+NDCG@ 1 :  0.635128248684
+Precision@ 3 :  0.211766038163
+NDCG@ 3 :  0.298092032608
+Precision@ 5 :  0.12712756922
+NDCG@ 5 :  0.215488657095
+Coverage Error:  295.8253779514184
+Label Ranking Average precision score:  0.41357249655859346
+Label Ranking Loss:  0.4912472048858686
+Hamming Loss:  0.00395779676398
+Weighted F1score:  0.24335275009204851
+Total time taken:  13833.846796 seconds.
+----------------------------------------------------
+python svc_reuters.py embeddings_on_reuters_400_reduced_embeddings_200.txt 200
+----------------------------------------------------

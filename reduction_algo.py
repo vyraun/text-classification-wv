@@ -12,7 +12,7 @@ red_dims = int(sys.argv[3])
 Glove = {}
 f = open(filename)
 
-print("Loading Glove vectors.")
+print("Loading Word vectors.")
 for line in f:
     values = line.split()
     word = values[0]
@@ -32,6 +32,8 @@ pca_embeddings = {}
 
 # PCA to get Top Components
 pca =  PCA(n_components = dims)
+print(X_train.shape)
+print(np.mean(X_train))
 X_train = X_train - np.mean(X_train)
 X_fit = pca.fit_transform(X_train)
 U1 = pca.components_
